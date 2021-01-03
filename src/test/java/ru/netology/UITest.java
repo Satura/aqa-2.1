@@ -28,7 +28,7 @@ public class UITest {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         }*/
         //System.out.println (System.getProperty("os.name"));
-        System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "./driver/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary();
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
