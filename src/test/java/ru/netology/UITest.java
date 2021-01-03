@@ -35,8 +35,8 @@ public class UITest {
         firefoxOptions.setBinary(firefoxBinary);
         driver = new FirefoxDriver(firefoxOptions);*/
 
-        WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
-        System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver");
+        driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
+        System.setProperty("webdriver.chrome.driver", "./artifacts/chromedriver");
 
     }
 
