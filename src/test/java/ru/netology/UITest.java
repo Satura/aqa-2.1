@@ -18,15 +18,15 @@ public class UITest {
         if (os.contains("win")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
         }
-        if (os.contains("nux")) {
+        if (os.contains("nux") || os.contains("nix") || os.contains("ntu")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         }
-        if (os.contains("nix")) {
+        /*if (os.contains("nix")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         }
         if (os.contains("ntu")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
-        }
+        }*/
         //System.out.println (System.getProperty("os.name"));
         //System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary();
