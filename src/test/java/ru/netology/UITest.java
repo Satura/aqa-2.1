@@ -14,7 +14,7 @@ public class UITest {
 
     @BeforeAll
     static void setUp(){
-        String os = System.getProperty("os.name").toLowerCase();
+        /*String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
         }
@@ -26,9 +26,9 @@ public class UITest {
         }
         if (os.contains("ntu")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
-        }
+        }*/
         //System.out.println (System.getProperty("os.name"));
-        //System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary();
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -36,7 +36,7 @@ public class UITest {
         driver = new FirefoxDriver(firefoxOptions);
 
         /*driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
-        System.setProperty("webdriver.chrome.driver", "./artifacts/chromedriver");*/
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver86");*/
 
     }
 
