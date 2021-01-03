@@ -14,7 +14,7 @@ public class UITest {
 
     @BeforeAll
     static void setUp(){
-        /*String os = System.getProperty("os.name").toLowerCase();
+        String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
         }
@@ -33,10 +33,10 @@ public class UITest {
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setBinary(firefoxBinary);
-        driver = new FirefoxDriver(firefoxOptions);*/
+        driver = new FirefoxDriver(firefoxOptions);
 
-        driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
-        System.setProperty("webdriver.chrome.driver", "./artifacts/chromedriver");
+        /*driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
+        System.setProperty("webdriver.chrome.driver", "./artifacts/chromedriver");*/
 
     }
 
