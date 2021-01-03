@@ -3,6 +3,8 @@ package ru.netology;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -12,7 +14,7 @@ public class UITest {
 
     @BeforeAll
     static void setUp(){
-        String os = System.getProperty("os.name").toLowerCase();
+        /*String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
         }
@@ -31,7 +33,11 @@ public class UITest {
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setBinary(firefoxBinary);
-        driver = new FirefoxDriver(firefoxOptions);
+        driver = new FirefoxDriver(firefoxOptions);*/
+
+        WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
+        System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver");
+
     }
 
     @AfterAll
