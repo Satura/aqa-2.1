@@ -12,7 +12,7 @@ public class UITest {
 
     @BeforeAll
     static void setUp(){
-        System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary();
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
