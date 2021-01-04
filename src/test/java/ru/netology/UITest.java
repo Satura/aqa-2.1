@@ -3,8 +3,6 @@ package ru.netology;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -21,22 +19,11 @@ public class UITest {
         if (os.contains("nux") || os.contains("nix") || os.contains("ntu")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         }
-        /*if (os.contains("nix")) {
-            System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
-        }
-        if (os.contains("ntu")) {
-            System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
-        }*/
-        //System.out.println (System.getProperty("os.name"));
-        //System.setProperty("webdriver.gecko.driver", "driver/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary();
         firefoxBinary.addCommandLineOptions("--headless");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setBinary(firefoxBinary);
         driver = new FirefoxDriver(firefoxOptions);
-
-        /*driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
-        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");*/
 
     }
 
@@ -89,6 +76,17 @@ public class UITest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("87");
         driver.findElement(By.tagName("button")).click();
         String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=phone] span.input__sub")).getText().trim();
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldTestEmptyPhone() {
+        driver.get("http://localhost:9999/");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Попов Олег");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Поле обязательно для заполнения";
         String actual = driver.findElement(By.cssSelector("[data-test-id=phone] span.input__sub")).getText().trim();
         Assertions.assertEquals(expected,actual);
     }
