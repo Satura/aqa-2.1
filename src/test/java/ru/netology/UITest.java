@@ -36,7 +36,7 @@ public class UITest {
         driver = new FirefoxDriver(firefoxOptions);
 
         /*driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
-        System.setProperty("webdriver.chrome.driver", "driver/chromedriver86");*/
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");*/
 
     }
 
