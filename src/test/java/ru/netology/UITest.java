@@ -11,7 +11,7 @@ public class UITest {
     private static WebDriver driver;
 
     @BeforeAll
-    static void setUp(){
+    static void setUpAll(){
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             System.setProperty("webdriver.gecko.driver", "driver/geckodriver.exe");
@@ -27,6 +27,11 @@ public class UITest {
 
     }
 
+    @BeforeEach
+    void setUp(){
+        driver.get("http://localhost:9999/");
+    }
+
     @AfterAll
     static void tearDown() {
         driver.quit();
@@ -37,7 +42,6 @@ public class UITest {
 
     @Test
     void shouldTestV1() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.name("name")).sendKeys("Иванова Анна");
         driver.findElement(By.name("phone")).sendKeys("+71234567890");
         driver.findElement(By.className("checkbox__box")).click();
@@ -51,9 +55,11 @@ public class UITest {
 
     @Test
     void shouldTestWrongName() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Popov Oleg");
+        driver.findElement(By.name("phone")).sendKeys("+71234567890");
+        driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.tagName("button")).click();
+
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=name] span.input__sub")).getText().trim();
         Assertions.assertEquals(expected,actual);
@@ -61,9 +67,11 @@ public class UITest {
 
     @Test
     void shouldTestEmptyName() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
+        driver.findElement(By.name("phone")).sendKeys("+71234567890");
+        driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.tagName("button")).click();
+
         String expected = "Поле обязательно для заполнения";
         String actual = driver.findElement(By.cssSelector("[data-test-id=name] span.input__sub")).getText().trim();
         Assertions.assertEquals(expected,actual);
@@ -71,10 +79,12 @@ public class UITest {
 
     @Test
     void shouldTestWrongPhone() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Попов Олег");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("87");
+
+        driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.tagName("button")).click();
+
         String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=phone] span.input__sub")).getText().trim();
         Assertions.assertEquals(expected,actual);
@@ -82,10 +92,11 @@ public class UITest {
 
     @Test
     void shouldTestEmptyPhone() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Попов Олег");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
+        driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.tagName("button")).click();
+
         String expected = "Поле обязательно для заполнения";
         String actual = driver.findElement(By.cssSelector("[data-test-id=phone] span.input__sub")).getText().trim();
         Assertions.assertEquals(expected,actual);
@@ -93,7 +104,6 @@ public class UITest {
 
     @Test
     void shouldTestNotAgreement() {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Попов Олег");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
         driver.findElement(By.tagName("button")).click();
