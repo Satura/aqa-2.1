@@ -41,7 +41,7 @@ public class UITest {
     // Задача #1
 
     @Test
-    void shouldTestV1() {
+    void shouldSuccessfulSendForm() {
         driver.findElement(By.name("name")).sendKeys("Иванова Анна");
         driver.findElement(By.name("phone")).sendKeys("+71234567890");
         driver.findElement(By.className("checkbox__box")).click();
